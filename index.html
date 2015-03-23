@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html ng-app>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' name='viewport'/>
+    <title>3D text</title>
+    <link href='img/favicon.ico' rel='icon' type='image/x-icon'/>
+    <link href='css/main.css' rel='stylesheet' type='text/css'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Bree+Serif' rel='stylesheet' type='text/css'>
+    <link href='//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
+
+    <script src="js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.5/angular.min.js"></script>
+    <script src="http://jscolor.com/jscolor/jscolor.js"></script>
+</head>
+<body ng-controller="MainController" ng-style="myBgColor" style="background: #372d3b">
+<header class="container-fluid">
+    <a href="http://www.thelittletechie.com/2015/03/3d-text-customizable.html#tlt">&lt; Back to post</a>
+    <a href="http://www.thelittletechie.com/"><img src="img/logo.png" /></a>
+</header>
+
+<div class="container-fluid">
+    <div class="row text-center">
+        <span class="render changeMe" ng-style="myTextColor" ng-class="{bold: textBold, italic: textItalic, underline: textUnderline, strike: textStrike}">{{name}}</span><br>
+        <span class="render reflect changeMe" ng-style="myTextColor" ng-class="{bold: textBold, italic: textItalic,  underline: textUnderline, strike: textStrike}">{{name}}</span>
+    </div>
+
+    <div class="row customize-box">
+        <div class="col-md-3 col-sm-12 col-xs-12">
+            <label for="name">Text</label>
+            <input type="text" id="name" class="form-control text-input" ng-model="name" />
+        </div>
+        <div class="col-md-1 col-sm-2 col-xs-6">
+            <label for="text-color">Text Col</label>
+            <input type="text" id="text-color" class="color color-input form-control" ng-model="textColor" ng-change="myTextColor={'color':'#'+textColor}" readonly>
+        </div>
+        <div class="col-md-1 col-sm-2 col-xs-6">
+            <label for="bg-color">Bg Col</label>
+            <input type="text" id="bg-color" class="color color-input form-control" value="372d3b" ng-model="bgColor" ng-change="myBgColor={'background-color':'#'+bgColor}" readonly>
+        </div>
+        <div class="col-md-1 col-sm-2 col-xs-4">
+            <label>Size</label><br>
+            <select id="size" class="form-control text-input" ng-model="size">
+                <option value="6">6</option>
+                <option value="8">8</option>
+                <option value="10">10</option>
+                <option value="12">12</option>
+                <option value="14">14</option>
+                <option value="16">16</option>
+                <option value="18">18</option>
+                <option value="20">20</option>
+                <option value="22">22</option>
+                <option value="24">24</option>
+                <option value="26">26</option>
+                <option value="28">28</option>
+                <option value="30">30</option>
+            </select>
+        </div>
+        <div class="col-md-3 col-sm-6 col-xs-8">
+            <label>Family</label><br>
+            <select id="family" class="form-control text-input" ng-model="family">
+                <option value="Agency FB">Agency FB</option>
+                <option value="Arial">Arial</option>
+                <option value="Arial Black">Arial Black</option>
+                <option value="Bree Serif">Bree Serif</option>
+                <option value="Calibri">Calibri</option>
+                <option value="Comic Sans MS">Comic Sans MS</option>
+                <option value="Courier New">Courier New</option>
+                <option value="Cursive">Cursive</option>
+                <option value="Georgia">Georgia</option>
+                <option value="Impact">Impact</option>
+                <option value="Lucida Console">Lucida Console</option>
+                <option value="Lucida Sans Unicode">Lucida Sans Unicode</option>
+                <option value="Tahoma">Tahoma</option>
+                <option value="Times New Roman">Times New Roman</option>
+                <option value="Trebuchet MS">Trebuchet MS</option>
+                <option value="Verdana ">Verdana</option>
+            </select>
+        </div>
+        <div class="col-md-2 col-sm-3 col-xs-6">
+            <label>Style</label><br>
+            <div class="check-box-style">
+                <input type="checkbox" id="text-bold" class="form-control hide" ng-model="textBold" />
+                <label for="text-bold" class="input-label input-label" style="font-weight: bold">B</label>
+                <input type="checkbox" id="text-italic" class="form-control hide" ng-model="textItalic" />
+                <label for="text-italic" class="input-label input-label italic">I</label>
+                <input type="checkbox" id="text-underline" class="form-control hide" ng-model="textUnderline" />
+                <label for="text-underline" class="input-label input-label underline">U</label>
+                <input type="checkbox" id="text-strike" class="form-control hide" ng-model="textStrike" />
+                <label for="text-strike" class="input-label input-label strike">S</label>
+            </div>
+        </div>
+        <div class="col-md-1 col-sm-2 col-xs-6">
+            <div class="check-box-style">
+                <label>Reflection</label><br>
+                <input type="radio" id="reflection-yes" class="form-control hide" value="reflection-yes" name="reflection" checked />
+                <label for="reflection-yes" class="input-label input-label"><i class="fa fa-check"></i></label>
+                <input type="radio" id="reflection-no" class="form-control hide" value="reflection-no" name="reflection" />
+                <label for="reflection-no" class="input-label input-label"><i class="fa fa-times"></i></label>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('input[type="radio"]').click(function(){
+            if($(this).attr("value")=="reflection-yes"){
+                $(".reflect").removeClass("hide");
+            }
+            if($(this).attr("value")=="reflection-no"){
+                $(".reflect").addClass("hide");
+            }
+        });
+    });
+</script>
+
+<script>
+    $("#size").change(function() {
+        $('.changeMe').css("font-size", $(this).val() + "em")
+    });
+
+    $("#family").change(function() {
+        $('.changeMe').css("font-family", $(this).val());
+
+    });
+</script>
+</body>
+</html>
